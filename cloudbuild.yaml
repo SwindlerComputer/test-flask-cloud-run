@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/cloudlab-407919/flask-hello-app', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cloudlab-407919/flask-hello-app']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'flask-hello-service', '--image', 'gcr.io/cloudlab-407919/flask-hello-app', '--platform', 'managed', '--region', 'us-central1']
+
+
